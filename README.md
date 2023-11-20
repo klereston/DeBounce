@@ -1,24 +1,84 @@
-# New Project
+# Ejemplo básico de TS
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+---
 
-## Available Scripts
+En este ejemplo básico hay:
 
-### npm start
+- ESLint
+- Prettier
+- ts-jest
+- nodemon
+- VSCode Debugging
+- Github Actions
+- Pequeño ejemplo de código funcional con import
 
-Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
+La configuración del debugger apunta a src/index.ts como archivo de inicio del proyecto.
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+Comandos:
 
-### npm run build
+Testing:
 
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
+```sh
+npm run test
+```
 
-**For the best production performance:** Add a build bundler plugin like [@snowpack/plugin-webpack](https://github.com/snowpackjs/snowpack/tree/main/plugins/plugin-webpack) or [snowpack-plugin-rollup-bundle](https://github.com/ParamagicDev/snowpack-plugin-rollup-bundle) to your `snowpack.config.mjs` config file.
+Ejecuta los tests ignorando los que existan en dist/
 
-### Q: What about Eject?
+Prettier format:
 
-No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
+```sh
+npm run prettier-format
+```
+
+Ejecuta manualmente el prettier en el proyecto, recomiendo instalar la extensión prettier y que se autoejecute al guardar.
+
+Watcher:
+
+```sh
+npm run dev:watcher
+```
+
+Ejecuta nodemon usando src/index.ts como archivo inicial
+
+Dev Run:
+
+```sh
+npm run dev:run
+```
+
+Ejecuta el proyecto sin watcher
+
+Build:
+
+```sh
+npm run build
+```
+
+Transpila el proyecto en dist/
+
+---
+
+## Debugger
+
+en el archivo .vscode/launch.json está la configuración del debugger.
+
+```json
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Lanza debug",
+      "preLaunchTask": "tsc: build - tsconfig.json",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/src/index.ts",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+    }
+  ]
+}
+```
+# DeBounce
